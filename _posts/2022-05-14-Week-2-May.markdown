@@ -76,6 +76,7 @@ An event-driven, serverless computing platform. It is a computing service that r
   ```
 6. Make sure, the `function_name`, `aws_region` is the same as your lambda function name and the region.
 7. We need to add the value for `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in the secrets. We could hardcode here, but that's not recommended.
+   1. Where to get the access key id and secret access key? Go to AWS Console → Services → IAM → Users → Select your user → Security Credentials → Access Keys.
 8. In your GitHub repository. Go to Settings → Secrets → Actions and add your access key id and secret access key with the name as given above.
 9. Now, whenever code is pushed into the main branch of your GitHub repository the changes will be reflected in your AWS Lambda function. 
 
