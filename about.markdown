@@ -4,15 +4,11 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Sonu Saha is a Software Engineer working on InSpec at [Chef](https://www.chef.io/). This blog is an attempt to document his software engineer journey.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+This blog is generated using Jekyll. Learn more about jekyll [here](https://github.com/jekyll/jekyll).
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+Connect with him:
+- [LinkedIn: sonusaha](https://www.linkedin.com/in/sonusaha/)
+- [Twitter: ahasunos](https://twitter.com/ahasunos)
+- [GitHub: ahasunos](https://github.com/ahasunos)
