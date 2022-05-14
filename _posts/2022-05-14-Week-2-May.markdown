@@ -1,0 +1,82 @@
+---
+layout: post
+title:  "Week 2, May 2022"
+date:   2022-05-14 09:46:54 +0530
+categories: weekly update
+---
+
+## AWS Lambda
+An event-driven, serverless computing platform. It is a computing service that runs code in response to events and automatically manages the computing resources required by that code.
+
+## How to set up an AWS Lambda function and auto deployments with Github Actions (in Ruby)
+
+1. Create a Lambda function(say `my-serverless-function`) on AWS.
+   1. Open the Lambda service from AWS home console.
+   2.	Open the Functions page of the Lambda console.
+   3.	Choose Create function
+   4.	Provide the basic information like function name and runtime environment.
+   5.	Click on Create function
+
+2. Create a GitHub repository, clone it on your system(optional).
+3. Navigate to your repository, create a file `lambda_function.rb`, and provide the sample code of a lambda function.
+  ```ruby
+     require 'json'
+
+     def lambda_handler(event:, context:)
+       msg = "Hello from Lambda!"
+       { statusCode: 200, 
+         body: JSON.generate(msg) 
+       }
+     end
+  ```
+4. Push the code to your GitHub repository if working locally.
+5. Navigate to Actions → New Workflow → Set up a workflow yourself.
+  ```yml
+      # This is a basic workflow to help you get started with Actions
+
+      name: Ruby CI to AWS Lambda
+
+      # Controls when the workflow will run
+      on:
+        # Triggers the workflow on push or pull request events but only for the main branch
+        push:
+          branches: [ main ]
+        pull_request:
+          branches: [ main ]
+
+        # Allows you to run this workflow manually from the Actions tab
+        workflow_dispatch:
+
+      jobs:
+        deploy_source:
+          name: build and deploy lambda
+          runs-on: ubuntu-latest
+          steps:
+            - uses: actions/checkout@v3
+            - name: Set up Ruby
+              uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+              with:
+                ruby-version: '2.7'
+            - name: Install dependencies
+              run: bundle install
+              env:
+                CI: true
+            - name: zip
+              uses: montudor/action-zip@v0.1.0
+              with:
+                args: zip -qq -r ./bundle.zip ./
+            - name: default deploy
+              uses: appleboy/lambda-action@master
+              with:
+                aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                aws_region: us-east-2
+                function_name: ss-auto-deploy-ruby-function
+                zip_file: bundle.zip
+  ```
+6. Make sure, the `function_name`, `aws_region` is the same as your lambda function name and the region.
+7. We need to add the value for `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in the secrets. We could hardcode here, but that's not recommended.
+8. In your GitHub repository. Go to Settings → Secrets → Actions and add your access key id and secret access key with the name as given above.
+9. Now, whenever code is pushed into the main branch of your GitHub repository the changes will be reflected in your AWS Lambda function. 
+
+The source code of this activity is available here: [https://github.com/ahasunos/aws-lambda-ruby-auto-deploy](https://github.com/ahasunos/aws-lambda-ruby-auto-deploy)
