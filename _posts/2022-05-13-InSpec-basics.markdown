@@ -270,3 +270,5 @@ For this activity I have two docker instances running, a CentOS and a Ubuntu ima
 
   Test Summary: 0 successful, 0 failures, 0 skipped
   ```
+
+  Watch the video series [here on Chef Software](https://www.youtube.com/playlist?list=PL11cZfNdwNyMHrqIo7aLWq9Wy3y63Nspt)
