@@ -196,7 +196,7 @@ InSpec controls can be conditionally executed based on additional requirements e
     os-family: OSFAMILY
   ```
 
-## My Activity for Profile Dependencies
+## Activity for Conditional Execution
 For this activity I have two docker instances running, a CentOS and a Ubuntu image. The Ubuntu instance has ```git``` installed, and in the CentOS instance I have created a file ```hello.txt``` in the root directory with a content of "Conditional test" inside of it.
 
 - Execution on CentOS
