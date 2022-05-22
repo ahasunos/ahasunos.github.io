@@ -2,7 +2,7 @@
 layout: post
 title:  "Getting Started with InSpec"
 date:   2022-05-13 20:20:20 +0530
-categories: weekly update
+categories: inspec
 ---
 
 ## InSpec Baseline
